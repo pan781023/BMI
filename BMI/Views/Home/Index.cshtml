@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Page Heading -->
+
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    @*<nav class="nav nav-borders">
+            <a class="nav-link active ms-0" href="account-profile.html">Profile</a>
+            <a class="nav-link" href="account-billing.html">Billing</a>
+            <a class="nav-link" href="account-security.html">Security</a>
+            <a class="nav-link" href="account-notifications.html">Notifications</a>
+        </nav>*@
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-child"></i> myBMIfit計算</h1>
+    <hr class="mt-0 mb-4">
+    <div class="row ">
+
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    說明：
+                    世界衛生組織建議以身體質量指數（Body Mass Index, BMI）來衡量肥胖程度，其計算公式是以體重（公斤）除以身高（公尺）的平方。 國民健康署建議我國成人BMI應維持在18.5（kg/㎡）及24（kg/㎡）之間，太瘦、過重或太胖皆有礙健康。 研究顯示，體重過重或是肥胖（BMI≧24）為糖尿病、心血管疾病、惡性腫瘤等慢性疾病的主要風險因素；而過瘦的健康問題，則會有營養不良、骨質疏鬆、猝死等健康問題。
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Form Group (username)-->
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="Username">姓名 : </label>
+                            <input class="form-control" id="Username" type="text" placeholder="請輸入名字....">
+                        </div>
+                    </div>
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="High">身高 : </label>
+                            <input class="form-control" id="High" type="number" placeholder="請輸入身高....">
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="Weight">體重 : </label>
+                            <input class="form-control" id="Weight" type="number" placeholder="請輸入體重....">
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1">性別 : </label>
+                            <select class="form-control" id="gender">
+                                <option selected="" disabled="">請選擇:</option>
+                                <option value="male">男生</option>
+                                <option value="female">女生</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="button" id="submit">計算</button>
+
+
+                </div>
+
+                <div class="row gx-3 mb-3 mt-3">
+                    <div class="col-md-12">
+                        <table style="width:100% " border="0" cellspacing="0" cellpadding="0" class="table-bordered bg-warning text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" id="t1">成人肥胖定義</th>
+                                    <th class="text-center" id="t2">身體質量指數(BMI)(kg/㎡) </th>
+                                    <th class="text-center" id="t3">腰圍(cm) </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="table_gray text_main">
+                                        <div align="center">體重過輕 </div>
+                                    </td>
+                                    <td class="table_gray text-center">
+                                      
+                                        BMI(女)&lt;19<br>
+                                        BMI(男)&lt;20<br>
+                                    </td>
+                                    <td class="table_gray">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="table_light  text_main">
+                                        <div align="center">健康體位 </div>
+                                    </td>
+                                    <td class="table_light text-center  text_main">
+                                        19&lt;=BMI(女)&lt;24<br>
+                                        20&lt;=BMI(男)&lt;25<br>
+                                    </td>
+                                    <td class="table_light">&nbsp;</td>
+                                </tr>
+                                <tr class=" text-center  text_main">
+                                    <td class="table_gray">
+                                        <div align="center">體位異常 </div>
+                                    </td>
+                                    <td class="table_gray">
+                                        輕度肥胖：24&lt;=BMI(女)&lt;29<br>
+                                        輕度肥胖：25&lt;=BMI(男)&lt;30<br>
+                                        中度肥胖：29 &lt;= BMI(女) &lt; 34<br>
+                                        中度肥胖：30 &lt;= BMI(男) &lt; 35<br>
+                                        重度肥胖：BMI(女) &gt;= 34<br>
+                                        重度肥胖：BMI(男) &gt;= 35<br>
+                                    </td>
+                                    <td class="table_gray">
+                                        男性：&gt;= 90 公分<br>
+                                        女性：&gt;= 80 公分
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="text-center">
+                        <img src="~/Content/img/bmi_form.png" class="w-50" alt="" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4" id="result">
+
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script>
+
+            $("#submit").on("click", function () {
+                var n = $("#Username").val();
+        var W = $("#Weight").val();
+        var H = $("#High").val();
+                var gender = $("#gender").val();
+                alert(H + "   " + W + "  " + gender);
+
+                if (W != "" && H != "" && gender!=""||gender !=null) {
+                    $.ajax({
+                        url: '@Url.Action("Index", "Home")',
+                        data:
+                        {
+                            "User": n,
+                            "gender": gender,
+                            "w": W,
+                            "h": H
+
+                        },
+                        type: 'POST',
+                    })
+                        .done(function (data) {
+
+                            $('#result').html(data);
+                        });
+    //}).error(function (data) {
+
+    //});
+
+                }else {
+                alert("請輸入參數");
+            }
+            });
+    </script>
+}
